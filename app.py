@@ -1,7 +1,8 @@
 import streamlit as st
-import plotly.express as px
-import pandas as pd
+from formulario import show_form
+from api import obtener_prediccion
 from utils.pdf_report import generar_pdf
+import plotly.express as px
 
 # Configuración inicial de la app
 st.set_page_config(page_title="Formulario de Propiedad", page_icon="🏠", layout="wide")
@@ -11,91 +12,60 @@ with open('style.css') as f:
 # Título de la aplicación
 st.title(":blue[Estimación de precio de construcción]")
 
-# Si el usuario no ha enviado el formulario, mostrar el formulario
+# Mostrar el formulario o los resultados según el estado
 if "submitted" not in st.session_state:
     st.session_state.submitted = False
 
-def calcular_presupuesto(beds, size, bathrooms):
-    precio_base = 500 * size
-    costo_camas = 3000 * beds
-    costo_banos = 5000 * bathrooms
-    presupuesto_total = precio_base + costo_camas + costo_banos
-
-    datos = {
-        "Componentes": ["Tamaño", "Camas", "Baños"],
-        "Costo ($)": [precio_base, costo_camas, costo_banos]
-    }
-    df_costos = pd.DataFrame(datos)
-
-    return presupuesto_total, df_costos
-
-# Pestaña principal para el formulario
-def show_form():
-    with st.form("formulario_propiedad"):
-        beds = st.number_input("Número de camas", min_value=1, step=1)
-        size = st.number_input("Tamaño de la propiedad (m²)", min_value=10, step=10)
-        bathrooms = st.number_input("Número de baños", min_value=1.0, step=0.5, format="%.1f")
-        
-        # Botón de envío del formulario
-        submitted = st.form_submit_button("Enviar")
-        
-        if submitted:
-            st.session_state.beds = beds
-            st.session_state.size = size
-            st.session_state.bathrooms = bathrooms
-            
-            # Calcular el presupuesto y guardar los resultados
-            st.session_state.presupuesto, st.session_state.df_costos = calcular_presupuesto(beds, size, bathrooms)
-            st.session_state.submitted = True
-            st.stop()
-
 # Pestaña para mostrar los resultados ingresados y gráficos
 def show_results():
-    with st.spinner("Cargando resultados..."):
-        st.subheader(f"Resultados de la estimación: **${st.session_state.presupuesto:,.2f}**")
-        
-        c1, c2 = st.columns(2)
-        with c1:
-            st.write(f"**Camas**: {st.session_state.beds}")
-            st.write(f"**Tamaño**: {st.session_state.size} m²")
-            st.write(f"**Baños**: {st.session_state.bathrooms}")
-            
-        with c2:
-            image_png_house_path = "img/transparent-house.png"
-            st.image(image_png_house_path)
+    if "form_data" not in st.session_state:
+        st.error("No se han recibido datos del formulario.")
+        return
 
-        col1, col2, col3 = st.columns(3)
-        
-        with col1:
-            st.write("**Desglose de costos**:")
-            st.dataframe(st.session_state.df_costos)
-            
-        with col2:
-            st.write("**Gráfico de costos por componente**:")
-            st.bar_chart(st.session_state.df_costos.set_index("Componentes"))
-        
-        # Gráfico circular con Plotly
-        fig = px.pie(st.session_state.df_costos, values='Costo ($)', names='Componentes', title='Distribución de Costos')
-        fig.update_traces(textposition='inside', textinfo='percent+label')
-        fig.update_layout(plot_bgcolor='lightblue')
-        
-        with col3:
-            st.plotly_chart(fig)
+    # Recuperar los datos del formulario desde session_state
+    data = st.session_state.form_data
 
-        # Botón para descargar el informe en PDF (por ahora generandolo)
-        if st.button("Descargar Informe PDF"):
-            pdf_path = generar_pdf(st.session_state)
-            st.success(f"Informe PDF generado: {pdf_path}")
+    # Hacer la solicitud a la API
+    prediction = obtener_prediccion(data)
 
-        st.button("Volver", on_click=reset_form)
+    if "error" in prediction:
+        st.error(prediction["error"])
+        return
+
+    # Mostrar resultados
+    st.subheader(f"Resultados de la estimación: **${prediction['data']:,.2f}**")
+    st.session_state.prediction = prediction['data']
+    #st.session_state.df_costos = prediction['df_costos']  # Si tienes el desglose de costos en la respuesta
+
+    # Mostrar el desglose de costos y gráficos
+    col1, col2, col3 = st.columns(3)
+    #with col1:
+        #st.write("**Desglose de costos**:")
+        #st.dataframe(st.session_state.df_costos)
+    #with col2:
+        
+        #st.write("**Gráfico de costos por componente**:")
+        #st.bar_chart(st.session_state.df_costos.set_index("Componentes"))
+    #with col3:
+        #fig = px.pie(st.session_state.df_costos, values='Costo ($)', names='Componentes', title='Distribución de Costos')
+        #st.plotly_chart(fig)
+
+    # Botón para descargar el informe en PDF
+    if st.button("Descargar Informe PDF"):
+        pdf_path = generar_pdf(st.session_state)
+        st.success(f"Informe PDF generado: {pdf_path}")
+
+    # Botón para reiniciar
+    st.button("Volver", on_click=reset_form)
 
 # Función para reiniciar el formulario
 def reset_form():
     st.session_state.submitted = False
+    st.session_state.prediction = None
     st.stop()
 
 # Mostrar el formulario o los resultados según el estado
-if not st.session_state.submitted:
-    show_form()
-else:
+if st.session_state.submitted:
     show_results()
+else:
+    show_form()
