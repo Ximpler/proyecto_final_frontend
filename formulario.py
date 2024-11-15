@@ -9,10 +9,28 @@ def show_form():
         evi2_vars = ['EVI2-V-11', 'EVI2-V-12', 'EVI2-V-13', 'EVI2-V-14', 'EVI2-V-15', 'EVI2-V-16', 'EVI2-V-17', 'EVI2-V-18', 'EVI2-V-19', 'EVI2-V-20', 'EVI2-V-21', 'EVI2-V-22', 'EVI2-V-23', 'EVI2-V-24', 'EVI2-V-25', 'EVI2-V-26', 'EVI2-V-27', 'EVI2-V-28', 'EVI2-V-29']
         evi3_vars = ['EVI3-V-11', 'EVI3-V-12', 'EVI3-V-13', 'EVI3-V-14', 'EVI3-V-15', 'EVI3-V-16', 'EVI3-V-17', 'EVI3-V-18', 'EVI3-V-19', 'EVI3-V-20', 'EVI3-V-21', 'EVI3-V-22', 'EVI3-V-23', 'EVI3-V-24', 'EVI3-V-25', 'EVI3-V-26', 'EVI3-V-27', 'EVI3-V-28', 'EVI3-V-29']
         evi4_vars = ['EVI4-V-11', 'EVI4-V-12', 'EVI4-V-13', 'EVI4-V-14', 'EVI4-V-15', 'EVI4-V-16', 'EVI4-V-17', 'EVI4-V-18', 'EVI4-V-19', 'EVI4-V-20', 'EVI4-V-21', 'EVI4-V-22', 'EVI4-V-23', 'EVI4-V-24', 'EVI4-V-25', 'EVI4-V-26', 'EVI4-V-27', 'EVI4-V-28', 'EVI4-V-29']
-        eiv5_vars = ['EIV5-V-11', 'EIV5-V-12', 'EIV5-V-13', 'EIV5-V-14', 'EIV5-V-15', 'EIV5-V-16', 'EIV5-V-17', 'EIV5-V-18', 'EIV5-V-19', 'EIV5-V-20', 'EIV5-V-21', 'EIV5-V-22', 'EIV5-V-23', 'EIV5-V-24', 'EIV5-V-25', 'EIV5-V-26', 'EIV5-V-27', 'EIV5-V-28', 'EIV5-V-29']
+        evi5_vars = ['EIV5-V-11', 'EIV5-V-12', 'EIV5-V-13', 'EIV5-V-14', 'EIV5-V-15', 'EIV5-V-16', 'EIV5-V-17', 'EIV5-V-18', 'EIV5-V-19', 'EIV5-V-20', 'EIV5-V-21', 'EIV5-V-22', 'EIV5-V-23', 'EIV5-V-24', 'EIV5-V-25', 'EIV5-V-26', 'EIV5-V-27', 'EIV5-V-28', 'EIV5-V-29']
+
+        eventos = {
+            'Evento 1': {
+                'evi1_vars': [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190],
+                'evi2_vars': [15, 25, 35, 45, 55, 65, 75, 85, 95, 105, 115, 125, 135, 145, 155, 165, 175, 185, 195],
+                'evi3_vars': [12, 22, 32, 42, 52, 62, 72, 82, 92, 102, 112, 122, 132, 142, 152, 162, 172, 182, 192],
+                'evi4_vars': [13, 23, 33, 43, 53, 63, 73, 83, 93, 103, 113, 123, 133, 143, 153, 163, 173, 183, 193],
+                'evi5_vars': [18, 28, 38, 48, 58, 68, 78, 88, 98, 108, 118, 128, 138, 148, 158, 168, 178, 188, 198],
+            },
+            'Evento 2': {
+                'evi1_vars': [20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200],
+                'evi2_vars': [25, 35, 45, 55, 65, 75, 85, 95, 105, 115, 125, 135, 145, 155, 165, 175, 185, 195, 205],
+                'evi3_vars': [22, 32, 42, 52, 62, 72, 82, 92, 102, 112, 122, 132, 142, 152, 162, 172, 182, 192, 202],
+                'evi4_vars': [23, 33, 43, 53, 63, 73, 83, 93, 103, 113, 123, 133, 143, 153, 163, 173, 183, 193, 203],
+                'evi5_vars': [28, 38, 48, 58, 68, 78, 88, 98, 108, 118, 128, 138, 148, 158, 168, 178, 188, 198, 208],
+            }
+        }
 
         # Formulario de entrada
         st.title("Formulario de Variables")
+        evi_inputs = {}
 
         # Ingreso de PPF-V- variables (normal input)
         # PPF-V variables
@@ -75,63 +93,79 @@ def show_form():
         }
 
         # Usar radio para un comportamiento de switch
-        show_dropdowns = st.radio("¿Mostrar dropdowns?", ("No", "Sí"), index=0)
+        evento_seleccionado = st.selectbox("Seleccione el evento", list(eventos.keys()))
 
-        if show_dropdowns == "Sí":
-            with st.container():
-                with st.expander("EVI1 Variables"):
-                    # EVI1 variables (slider tipo rango)
-                    evi1_inputs = {}
-                    for var in evi1_vars:
-                        v = var.split("EVI1-")[1]
-                        min_value = ranges[v]['Rango min']
-                        max_value = ranges[v]['Rango max']
-                        step = ranges[v]['Paso']
-                        print(min_value)
-                        print(max_value)
-                        evi1_inputs[var] = st.slider(f'{evi_descriptions[v]}', min_value=min_value, max_value=max_value, step=step, key=var)
 
-                with st.expander("EVI2 Variables"):
-                    # EVI2 variables (slider tipo rango)
-                    evi2_inputs = {}
-                    for var in evi2_vars:
-                        v = var.split("EVI2-")[1]
-                        min_value = ranges[v]['Rango min']
-                        max_value = ranges[v]['Rango max']
-                        step = ranges[v]['Paso']
-                        evi2_inputs[var] = st.slider(f'{evi_descriptions[v]}', min_value=min_value, max_value=max_value, step=step, key=var)
+        with st.container():
+            with st.expander("EIV1 Variables"):
+                evi1_inputs = {}
+                for i, var in enumerate(evi1_vars):
+                    v = var.split("EVI1-")[1]
+                    min_value = ranges[v]['Rango min']
+                    max_value = ranges[v]['Rango max']
+                    step = ranges[v]['Paso']
+                    
+                    if evento_seleccionado:
+                        value = eventos[evento_seleccionado]['evi1_vars'][i]
+                    else:
+                        value = min_value
+                    evi1_inputs[var] = st.slider(f'{evi_descriptions[v]}', min_value=min_value, max_value=max_value, step=step, key=var)
 
-                with st.expander("EVI3 Variables"):
-                    # EVI3 variables (slider tipo rango)
-                    evi3_inputs = {}
-                    for var in evi3_vars:
-                        v = var.split("EVI3-")[1]  # Asegurarse de que el 'split' es correcto
-                        min_value = ranges[v]['Rango min']
-                        max_value = ranges[v]['Rango max']
-                        step = ranges[v]['Paso']
-                        evi3_inputs[var] = st.slider(f'{evi_descriptions[v]}', min_value=min_value, max_value=max_value, step=step, key=var)
+            with st.expander("EIV2 Variables"):
+                evi2_inputs = {}
+                for i, var in enumerate(evi2_vars): 
+                    v = var.split("EVI2-")[1]
+                    min_value = ranges[v]['Rango min']
+                    max_value = ranges[v]['Rango max']
+                    step = ranges[v]['Paso']
+                    if evento_seleccionado:
+                        value = eventos[evento_seleccionado]['evi2_vars'][i]
+                    else:
+                        value = min_value
+                    evi2_inputs[var] = st.slider(f'{evi_descriptions[v]}', min_value=min_value, max_value=max_value, step=step, key=var)
 
-                with st.expander("EVI4 Variables"):
-                    # EVI4 variables (slider tipo rango)
-                    evi4_inputs = {}
-                    for var in evi4_vars:
-                        v = var.split("EVI4-")[1]  # Asegurarse de que el 'split' es correcto
-                        min_value = ranges[v]['Rango min']
-                        max_value = ranges[v]['Rango max']
-                        step = ranges[v]['Paso']
-                        evi4_inputs[var] = st.slider(f'{evi_descriptions[v]}', min_value=min_value, max_value=max_value, step=step, key=var)
+            with st.expander("EIV3 Variables"):
+                evi3_inputs = {}
+                for i, var in enumerate(evi3_vars): 
+                    v = var.split("EVI3-")[1]
+                    min_value = ranges[v]['Rango min']
+                    max_value = ranges[v]['Rango max']
+                    step = ranges[v]['Paso']
+                    if evento_seleccionado:
+                        value = eventos[evento_seleccionado]['evi3_vars'][i]
+                    else:
+                        value = min_value
+                    evi3_inputs[var] = st.slider(f'{evi_descriptions[v]}', min_value=min_value, max_value=max_value, step=step, key=var)
 
-                with st.expander("EIV5 Variables"):
-                    # EIV5 variables (slider tipo rango)
-                    eiv5_inputs = {}
-                    for var in eiv5_vars:
-                        v = var.split("EIV5-")[1]  # Asegurarse de que el 'split' es correcto
-                        min_value = ranges[v]['Rango min']
-                        max_value = ranges[v]['Rango max']
-                        step = ranges[v]['Paso']
-                        eiv5_inputs[var] = st.slider(f'{evi_descriptions[v]}', min_value=min_value, max_value=max_value, step=step, key=var)
-        
+            with st.expander("EIV4 Variables"):
+                evi4_inputs = {}
+                for i, var in enumerate(evi4_vars): 
+                    v = var.split("EVI4-")[1]
+                    min_value = ranges[v]['Rango min']
+                    max_value = ranges[v]['Rango max']
+                    step = ranges[v]['Paso']
+                    if evento_seleccionado:
+                        value = eventos[evento_seleccionado]['evi5_vars'][i]
+                    else:
+                        value = min_value
+                    evi4_inputs[var] = st.slider(f'{evi_descriptions[v]}', min_value=min_value, max_value=max_value, step=step, key=var)
 
+
+            with st.expander("EIV5 Variables"):
+                evi5_inputs = {}
+                for i, var in enumerate(evi5_vars):  # Cambia según las variables reales
+                    v = var.split("EIV5-")[1]
+                    min_value = ranges[v]['Rango min']
+                    max_value = ranges[v]['Rango max']
+                    step = ranges[v]['Paso']
+                    if evento_seleccionado:
+                        value = eventos[evento_seleccionado]['evi5_vars'][i]
+                    else:
+                        value = min_value
+                    evi5_inputs[var] = st.slider(f'{evi_descriptions[v]}', min_value=min_value, max_value=max_value, step=step, key=var)
+
+
+       
         # Botón de envío del formulario
         submitted = st.form_submit_button("Enviar")
         
