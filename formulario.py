@@ -4,7 +4,7 @@ def show_form():
     with st.form("formulario_propiedad"):
         
         # Variables
-        ppf_vars = ['PPF-V-2', 'PPF-V-3', 'PPF-V-7', 'PPF-V-8']
+        ppf_vars = ['PPF-V-2', 'PPF-V-3','PPF-V-4','PPF-V-5', 'PPF-V-6' , 'PPF-V-7', 'PPF-V-8']
         evi1_vars = ['EVI1-V-11', 'EVI1-V-12', 'EVI1-V-13', 'EVI1-V-14', 'EVI1-V-15', 'EVI1-V-16', 'EVI1-V-17', 'EVI1-V-18', 'EVI1-V-19', 'EVI1-V-20', 'EVI1-V-21', 'EVI1-V-22', 'EVI1-V-23', 'EVI1-V-24', 'EVI1-V-25', 'EVI1-V-26', 'EVI1-V-27', 'EVI1-V-28', 'EVI1-V-29']
         evi2_vars = ['EVI2-V-11', 'EVI2-V-12', 'EVI2-V-13', 'EVI2-V-14', 'EVI2-V-15', 'EVI2-V-16', 'EVI2-V-17', 'EVI2-V-18', 'EVI2-V-19', 'EVI2-V-20', 'EVI2-V-21', 'EVI2-V-22', 'EVI2-V-23', 'EVI2-V-24', 'EVI2-V-25', 'EVI2-V-26', 'EVI2-V-27', 'EVI2-V-28', 'EVI2-V-29']
         evi3_vars = ['EVI3-V-11', 'EVI3-V-12', 'EVI3-V-13', 'EVI3-V-14', 'EVI3-V-15', 'EVI3-V-16', 'EVI3-V-17', 'EVI3-V-18', 'EVI3-V-19', 'EVI3-V-20', 'EVI3-V-21', 'EVI3-V-22', 'EVI3-V-23', 'EVI3-V-24', 'EVI3-V-25', 'EVI3-V-26', 'EVI3-V-27', 'EVI3-V-28', 'EVI3-V-29']
@@ -41,6 +41,15 @@ def show_form():
 
         # PPF-V-3 input
         ppf_inputs['PPF-V-3'] = st.number_input('Lot area in square meters.', value=0.0, min_value=0.0)
+        
+        # PPF-V-4 input
+        ppf_inputs['PPF-V-4'] = st.number_input('Lot area in square meters.', value=0.0, min_value=0.0)
+        
+        # PPF-V-5 input
+        ppf_inputs['PPF-V-5'] = st.number_input('Preliminary estimated construction cost based on the prices at the beginning of the project.', value=0.0, min_value=0.0)
+        
+        # PPF-V-6 input
+        ppf_inputs['PPF-V-6'] = st.number_input('Lot area in square meters.', value=0.0, min_value=0.0)
 
         # PPF-V-7 input
         ppf_inputs['PPF-V-7'] = st.number_input('Duration of construction in time resolution (e.g., quarters).', value=0, min_value=0)
