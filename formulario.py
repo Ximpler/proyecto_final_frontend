@@ -49,7 +49,7 @@ def show_form():
         ppf_inputs['PPF-V-5'] = st.number_input('Preliminary estimated construction cost based on the prices at the beginning of the project.', value=0.0, min_value=0.0)
         
         # PPF-V-6 input
-        ppf_inputs['PPF-V-6'] = st.number_input('Lot area in square meters.', value=0.0, min_value=0.0)
+        ppf_inputs['PPF-V-6'] = st.number_input('Equivalent preliminary estimated construction cost based on the prices at the beginning of the project in a selected base year.', value=0.0, min_value=0.0)
 
         # PPF-V-7 input
         ppf_inputs['PPF-V-7'] = st.number_input('Duration of construction in time resolution (e.g., quarters).', value=0, min_value=0)
