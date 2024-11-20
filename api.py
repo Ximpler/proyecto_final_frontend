@@ -7,10 +7,13 @@ load_dotenv()
 API_URL = os.getenv("API_URL")
 
 def obtener_prediccion(data):
+    
     try:
+        print("--------------------Llamando a la api-----------------------")
         response = requests.post(API_URL, json=data)
 
         if response.status_code == 200:
+            print("llamada a la api exitosa!")
             return response.json()
         else:
             return {"error": "Error en la predicción: " + response.json().get('error')}

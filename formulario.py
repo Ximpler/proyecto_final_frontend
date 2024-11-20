@@ -43,7 +43,7 @@ def show_form():
         ppf_inputs['PPF-V-3'] = st.number_input('Lot area in square meters.', value=0.0, min_value=0.0)
         
         # PPF-V-4 input
-        ppf_inputs['PPF-V-4'] = st.number_input('Lot area in square meters.', value=0.0, min_value=0.0)
+        ppf_inputs['PPF-V-4'] = st.number_input('Total preliminary estimated construction cost based on the prices at the beginning of the project', value=0.0, min_value=0.0)
         
         # PPF-V-5 input
         ppf_inputs['PPF-V-5'] = st.number_input('Preliminary estimated construction cost based on the prices at the beginning of the project.', value=0.0, min_value=0.0)
@@ -101,8 +101,17 @@ def show_form():
             'V-29': {'Rango max': 2606321.0, 'Rango min': 121857.2, 'Paso': 0.01}
         }
 
-        # Usar radio para un comportamiento de switch
+        # Guardar el evento seleccionado previamente en session_state
+        if "evento_seleccionado" not in st.session_state:
+            st.session_state.evento_seleccionado = None
+
+        # Detectar el cambio en el evento seleccionado
         evento_seleccionado = st.selectbox("Seleccione el evento", list(eventos.keys()))
+
+        # Si cambia el evento, refresca la página
+        if st.session_state.evento_seleccionado != evento_seleccionado:
+            st.session_state.evento_seleccionado = evento_seleccionado
+            st.rerun()
 
 
         with st.container():
