@@ -1,5 +1,5 @@
 import streamlit as st
-from api import obtener_prediccion 
+from utils.api import obtener_prediccion 
 
 def show_results():
     if "form_data" not in st.session_state:

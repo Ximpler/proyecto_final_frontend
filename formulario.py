@@ -1,4 +1,5 @@
 import streamlit as st
+from utils.upload_json import load_json
 
 def show_form():
     with st.form("formulario_propiedad"):
@@ -35,6 +36,9 @@ def show_form():
         # Ingreso de PPF-V- variables (normal input)
         # PPF-V variables
         ppf_inputs = {}
+        
+        uploaded_file = st.file_uploader("Arrastra y suelta un archivo JSON aquí", type="json")
+        
 
         # PPF-V-2 input
         ppf_inputs['PPF-V-2'] = st.number_input('Total floor area of the building in square meters.', value=0.0, min_value=0.0)
@@ -111,9 +115,10 @@ def show_form():
         # Si cambia el evento, refresca la página
         if st.session_state.evento_seleccionado != evento_seleccionado:
             st.session_state.evento_seleccionado = evento_seleccionado
+            print("------------selecciono el evento:", evento_seleccionado)
             st.rerun()
 
-
+        
         with st.container():
             with st.expander("EIV1 Variables"):
                 evi1_inputs = {}
@@ -188,12 +193,18 @@ def show_form():
         submitted = st.form_submit_button("Enviar")
         
         if submitted:
-            data = {
-                "ppf_inputs": ppf_inputs,
-                "evi1_inputs": evi1_inputs,
-                # Add the other input sets for EVI2, EVI3, EVI4, EIV5 here
-            }
+            if uploaded_file:
+                st.success("Archivo cargado con éxito.")
+                data = load_json(uploaded_file)
+                st.session_state.form_data = data
+                st.session_state.submitted = True
+            else:
+                data = {
+                    "ppf_inputs": ppf_inputs,
+                    "evi1_inputs": evi1_inputs,
+                    # Add the other input sets for EVI2, EVI3, EVI4, EIV5 here
+                }
 
-            # Almacenar los datos del formulario y el estado de envío
-            st.session_state.form_data = data
-            st.session_state.submitted = True
+                # Almacenar los datos del formulario y el estado de envío
+                st.session_state.form_data = data
+                st.session_state.submitted = True
