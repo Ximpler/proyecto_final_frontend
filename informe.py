@@ -1,5 +1,5 @@
 import streamlit as st
-from utils.api import obtener_prediccion 
+from utils.api import obtener_prediccion
 
 def show_results():
     if "form_data" not in st.session_state:
@@ -27,4 +27,4 @@ def show_results():
 def reset_form():
     st.session_state.submitted = False
     st.session_state.prediction = None
-    st.stop()
+    st.rerun()

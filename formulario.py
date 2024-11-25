@@ -10,27 +10,27 @@ evi4_vars = ['EVI4-V-11', 'EVI4-V-12', 'EVI4-V-13', 'EVI4-V-14', 'EVI4-V-15', 'E
 evi5_vars = ['EIV5-V-11', 'EIV5-V-12', 'EIV5-V-13', 'EIV5-V-14', 'EIV5-V-15', 'EIV5-V-16', 'EIV5-V-17', 'EIV5-V-18', 'EIV5-V-19', 'EIV5-V-20', 'EIV5-V-21', 'EIV5-V-22', 'EIV5-V-23', 'EIV5-V-24', 'EIV5-V-25', 'EIV5-V-26', 'EIV5-V-27', 'EIV5-V-28', 'EIV5-V-29']
 
 eventos = {
-    'Seleccione una opción': {
-        'evi1_vars': [7196,51.3,56.13,5.97,249110.7,2562.3,52.8,217,10445.6,15,733.8,815.5,1755,8002,60.74,54.26,2978.26,41407,601988.1],
-        'evi2_vars': [7196,51.3,56.13,5.97,249110.7,2562.3,52.8,217,10445.6,15,733.8,815.5,1755,8002,60.74,54.26,2978.26,41407,601988.1],
-        'evi3_vars': [7196,51.3,56.13,5.97,249110.7,2562.3,52.8,217,10445.6,15,733.8,815.5,1755,8002,60.74,54.26,2978.26,41407,601988.1],
-        'evi4_vars':[7196,51.3,56.13,5.97,249110.7,2562.3,52.8,217,10445.6,15,733.8,815.5,1755,8002,60.74,54.26,2978.26,41407,601988.1],
-        'eiv5_vars': [7196,51.3,56.13,5.97,249110.7,2562.3,52.8,217,10445.6,15,733.8,815.5,1755,8002,60.74,54.26,2978.26,41407,601988.1],
-    },
+    # 'Seleccione una opción': {
+    #     'evi1_vars': [7196,51.3,56.13,5.97,249110.7,2562.3,52.8,217,10445.6,15,733.8,815.5,1755,8002,60.74,54.26,2978.26,41407,601988.1],
+    #     'evi2_vars': [7196,51.3,56.13,5.97,249110.7,2562.3,52.8,217,10445.6,15,733.8,815.5,1755,8002,60.74,54.26,2978.26,41407,601988.1],
+    #     'evi3_vars': [7196,51.3,56.13,5.97,249110.7,2562.3,52.8,217,10445.6,15,733.8,815.5,1755,8002,60.74,54.26,2978.26,41407,601988.1],
+    #     'evi4_vars':[7196,51.3,56.13,5.97,249110.7,2562.3,52.8,217,10445.6,15,733.8,815.5,1755,8002,60.74,54.26,2978.26,41407,601988.1],
+    #     'eiv5_vars': [7196,51.3,56.13,5.97,249110.7,2562.3,52.8,217,10445.6,15,733.8,815.5,1755,8002,60.74,54.26,2978.26,41407,601988.1],
+    # },
     'Evento 1': {
-        'evi1_vars': [7196,51.3,56.13,5.97,249110.7,2562.3,52.8,217,10445.6,15,733.8,815.5,1755,8002,60.74,54.26,2978.26,41407,601988.1],
-        'evi2_vars': [7196,51.3,56.13,5.97,249110.7,2562.3,52.8,217,10445.6,15,733.8,815.5,1755,8002,60.74,54.26,2978.26,41407,601988.1],
-        'evi3_vars':[7196,51.3,56.13,5.97,249110.7,2562.3,52.8,217,10445.6,15,733.8,815.5,1755,8002,60.74,54.26,2978.26,41407,601988.1],
-        'evi4_vars': [7196,51.3,56.13,5.97,249110.7,2562.3,52.8,217,10445.6,15,733.8,815.5,1755,8002,60.74,54.26,2978.26,41407,601988.1],
-        'eiv5_vars': [7196,51.3,56.13,5.97,249110.7,2562.3,52.8,217,10445.6,15,733.8,815.5,1755,8002,60.74,54.26,2978.26,41407,601988.1],
+        'evi1_vars': [7100, 51.5, 57.8, 6.0, 240500.4, 2520.0, 53.5, 220, 10500.6, 15, 740.0, 820.3, 1750, 8005, 61.0, 54.5, 2920.0, 41250, 601000.0],
+        'evi2_vars': [7250, 50.8, 56.5, 5.8, 250300.0, 2600.5, 51.0, 210, 10350.4, 14, 710.0, 815.6, 1725, 7900, 60.0, 53.0, 2890.0, 41500, 605000.0],
+        'evi3_vars': [7300, 51.0, 57.0, 6.1, 247000.6, 2550.3, 54.0, 225, 10480.3, 16, 735.0, 818.2, 1740, 7950, 61.5, 54.2, 2910.0, 42000, 607000.0],
+        'evi4_vars': [7450, 52.2, 58.0, 6.2, 245800.8, 2580.4, 52.0, 205, 10300.5, 15, 725.0, 810.5, 1730, 8000, 62.0, 55.0, 2940.0, 42500, 610000.0],
+        'eiv5_vars': [7500, 50.3, 59.0, 6.0, 255000.0, 2405.0, 59.0, 235, 10050.0, 17, 715.0, 825.3, 1760, 8350, 63.0, 57.0, 2980.0, 43500, 625000.0]
     },
     'Evento 2': {
-        'evi1_vars': [7196,51.3,56.13,5.97,249110.7,2562.3,52.8,217,10445.6,15,733.8,815.5,1755,8002,60.74,54.26,2978.26,41407,601988.1],
-        'evi2_vars': [7196,51.3,56.13,5.97,249110.7,2562.3,52.8,217,10445.6,15,733.8,815.5,1755,8002,60.74,54.26,2978.26,41407,601988.1],
-        'evi3_vars': [7196,51.3,56.13,5.97,249110.7,2562.3,52.8,217,10445.6,15,733.8,815.5,1755,8002,60.74,54.26,2978.26,41407,601988.1],
-        'evi4_vars': [7196,51.3,56.13,5.97,249110.7,2562.3,52.8,217,10445.6,15,733.8,815.5,1755,8002,60.74,54.26,2978.26,41407,601988.1],
-        'eiv5_vars': [7196,51.3,56.13,5.97,249110.7,2562.3,52.8,217,10445.6,15,733.8,815.5,1755,8002,60.74,54.26,2978.26,41407,601988.1]
-    }
+        'evi1_vars': [7543, 49.8, 60.2, 6.5, 300450.3, 2005.7, 62.1, 310, 9982.6, 18, 875.6, 745.2, 1854, 9003, 70.15, 58.32, 3100.5, 45500, 642135.4],
+        'evi2_vars': [7021, 53.6, 52.7, 5.2, 229800.0, 2700.4, 49.3, 150, 10230.4, 13, 689.4, 865.7, 1680, 7800, 59.84, 52.42, 2850.3, 40010, 585000.0],
+        'evi3_vars': [7200, 50.1, 58.9, 6.8, 254000.7, 2500.6, 55.5, 230, 10800.1, 14, 700.5, 810.0, 1700, 7950, 62.35, 53.67, 2900.0, 41000, 600050.3],
+        'evi4_vars': [7350, 52.0, 57.5, 6.3, 243210.5, 2600.8, 50.2, 215, 10620.5, 17, 750.0, 825.4, 1800, 8100, 61.0, 55.0, 2950.0, 42000, 605000.0],
+        'eiv5_vars': [7600, 50.5, 59.8, 5.9, 260000.0, 2400.2, 58.0, 250, 10100.0, 16, 720.0, 835.3, 1775, 8300, 64.0, 56.0, 2990.0, 43000, 620000.0]
+    },
 }
 
 evi_descriptions = {
@@ -94,9 +94,9 @@ def generar_sliders(titulo, variables, eventos, evento_seleccionado, ranges, des
                 value = eventos[evento_seleccionado][f'{prefix.lower()}_vars'][i]
 
                 # Log para depurar
-                print(f"Valor inicial: {value}, Tipo: {type(value)}")
-                print(f"Min: {min_value}, Max: {max_value}, Step: {step}")
-                print("____________________________LOG___________________")
+                #print(f"Valor inicial: {value}, Tipo: {type(value)}")
+                #print(f"Min: {min_value}, Max: {max_value}, Step: {step}")
+                #print("____________________________LOG___________________")
                 
                 # Convertir `value` al tipo de `min_value`
                 if isinstance(min_value, int):
@@ -161,13 +161,16 @@ def show_form():
             st.session_state.evento_seleccionado = None
 
         # Detectar el cambio en el evento seleccionado
+        
+        
         evento_seleccionado = st.selectbox("Seleccione el evento", list(eventos.keys()))
-
+        
+        st.write(f"Opción seleccionada: **{evento_seleccionado}**")        
         # Si cambia el evento, refresca la página
         if st.session_state.evento_seleccionado != evento_seleccionado:
             st.session_state.evento_seleccionado = evento_seleccionado
             print("------------selecciono el evento:", evento_seleccionado)
-            #st.rerun()
+            st.rerun()
     
         with st.container():
             evi1_inputs = generar_sliders(
@@ -196,11 +199,36 @@ def show_form():
                     st.session_state.form_data = data
                     st.session_state.submitted = True
                 else:
-                    data = {
-                        "ppf_inputs": ppf_inputs,
-                        "evi1_inputs": evi1_inputs,
-                        # Add the other input sets for EVI2, EVI3, EVI4, EIV5 here
-                    }
+                     # Renombrar las claves para que coincidan con el formato requerido
+                    data = {}
+
+                    # PPF-V variables
+                    data.update({
+                        "PPF-V-2": ppf_inputs['PPF-V-2'],
+                        "PPF-V-3": ppf_inputs['PPF-V-3'],
+                        "PPF-V-4": ppf_inputs['PPF-V-4'],
+                        "PPF-V-5": ppf_inputs['PPF-V-5'],
+                        "PPF-V-6": ppf_inputs['PPF-V-6'],
+                        "PPF-V-7": ppf_inputs['PPF-V-7'],
+                        "PPF-V-8": ppf_inputs['PPF-V-8']
+                    })
+
+                    # Función para renombrar claves eliminando la repetición del prefijo
+                    def rename_keys(input_data, prefix):
+                        renamed_data = {}
+                        for key, value in input_data.items():
+                            # Eliminar el prefijo repetido y mantener solo la parte relevante
+                            new_key = key.replace(f'{prefix}-{prefix}-', f'{prefix}-')
+                            renamed_data[new_key] = value
+                        return renamed_data
+
+                    # Renombrar las claves de EVI1, EVI2, EVI3, EVI4, EVI5
+                    data.update(rename_keys(evi1_inputs, 'EVI1'))
+                    data.update(rename_keys(evi2_inputs, 'EVI2'))
+                    data.update(rename_keys(evi3_inputs, 'EVI3'))
+                    data.update(rename_keys(evi4_inputs, 'EVI4'))
+                    data.update(rename_keys(evi5_inputs, 'EVI5'))
+
 
                     # Almacenar los datos del formulario y el estado de envío
                     st.session_state.form_data = data
